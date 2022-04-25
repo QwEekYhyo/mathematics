@@ -1,3 +1,4 @@
+from fraction import *
 import math
 
 class Complex():
@@ -80,7 +81,7 @@ class Complex():
     def nroot(self,n):
         roots = [Complex(mod= self.modulus**(1/n),arg= (self.argument+2*k*math.pi)/n) for k in range(n)]
         return roots
-
+    # can't compute for exemple : Complex(4,2)**2.15, maybe can improve ?
     def __pow__(self,other):
         output = 1
         if isinstance(other,int):
@@ -95,42 +96,6 @@ class Complex():
             decimal.num_to_int()
             decimal.simplify()
             return [output*(n**decimal.numerator) for n in self.nroot(decimal.denominator)]
-
-class Fraction:
-    def __init__(self,num,den = 1):
-        self.numerator = num
-        self.denominator = den
-        if self.numerator < 0 and self.denominator < 0:
-            self.numerator = abs(self.numerator)
-            self.denominator = abs(self.denominator)
-
-    def __repr__(self):
-        return f"{self.numerator}/{self.denominator}"
-
-    def _to_int(self):
-        if isinstance(self.numerator,float) and self.numerator.is_integer():
-            self.numerator = int(self.numerator)
-        if isinstance(self.denominator,float) and self.denominator.is_integer():
-            self.denominator = int(self.denominator)
-                    
-    def num_to_int(self):
-        while not self.numerator.is_integer():
-            self.numerator *= 10
-            self.denominator *= 10
-        self._to_int()
-
-    def simplify(self):
-        x = pgdc(self.numerator,self.denominator) 
-        self.numerator /= x
-        self.denominator /= x
-        self._to_int()        
-
-def pgdc(a,b):
-    if b == 0:
-        return a
-    else:
-        return pgdc(b,a%b)
-
 
 def cast_to_complex(truc):
     if isinstance(truc,Complex):
