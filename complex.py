@@ -21,15 +21,15 @@ class Complex():
             if self.real and not self.im:
                 return str(self.real)
             elif self.real and self.im in (1,-1):
-                return f"{round(self.real,Complex.acc)} + i" if self.im > 0 else f"{round(self.real,Complex.acc)} - i"
+                return f"{round(self.real,Complex.acc)}+i" if self.im > 0 else f"{round(self.real,Complex.acc)}-i"
             elif self.real:
-                return f"{round(self.real,Complex.acc)} + {abs(round(self.im,Complex.acc))}i" if self.im > 0 else f"{round(self.real,Complex.acc)} - {abs(round(self.im,Complex.acc))}i"
+                return f"{round(self.real,Complex.acc)}+{abs(round(self.im,Complex.acc))}i" if self.im > 0 else f"{round(self.real,Complex.acc)}-{abs(round(self.im,Complex.acc))}i"
             elif not self.real and not self.im:
                 return str(self.real)
             elif not self.real and self.im in (1,-1):
-                return "i" if self.im > 0 else "- i"
+                return "i" if self.im > 0 else "-i"
             else:
-                return f"{abs(round(self.im,Complex.acc))}i" if self.im > 0 else f"- {abs(round(self.im,Complex.acc))}i"
+                return f"{abs(round(self.im,Complex.acc))}i" if self.im > 0 else f"-{abs(round(self.im,Complex.acc))}i"
             
         elif self.form == 1:
             return f"{round(self.modulus,Complex.acc)}(cos({round(self.argument,Complex.acc)}) + i sin({round(self.argument,Complex.acc)}))"

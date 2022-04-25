@@ -1,6 +1,7 @@
 # Logan LUCAS
 
 import random,copy
+import complex as c
 
 class Matrix:
     def __init__(self,values = None, Isize = 3):
@@ -69,7 +70,7 @@ class Matrix:
             return -other + self
 
     def __mul__(self,other):
-        if isinstance(other,int) or isinstance(other,float):
+        if isinstance(other,int) or isinstance(other,float): #ajouter multiplication par complexe
             output = []
             for i in self.values:
                 temp = []
@@ -244,20 +245,6 @@ class Matrix:
 def fract(fl):
     output = fl.as_integer_ratio()
     return "{}/{}".format(output[0],output[1])
-                    
-def newRMatrix(size = 10,value = 1000,isSquare = False):
-    width = random.randrange(1,size)
-    if isSquare:
-        length = width
-    else:
-        length = random.randrange(1,size)
-    output = []
-    for i in range(width):
-        temp = []
-        for j in range(length):
-            temp.append(random.randrange(-value,value))
-        output.append(temp)
-    return Matrix(output)
 
 def newMatrix(value = 1000,width = 3,length = 0):
     if not length:
@@ -270,4 +257,12 @@ def newMatrix(value = 1000,width = 3,length = 0):
         output.append(temp)
     return Matrix(output)
 
-print("newMatrix : value , width , length (all optional)\nnewRMatrix : size , value , isSquare (all optional)\nMatrix(values,Identity size) : identity size only utilized if value is empty")
+def newComplexMatrix(value = 30, width = 3, length = 0):
+    if not length:
+        length = width
+    return Matrix([[c.randcomplex(value) for i in range(length)] for j in range(width)])
+    
+    
+print("Matrix(values,Identity size) : identity size only utilized if value is empty")
+print("newMatrix : value , width , length (all optional)")
+print("newComplexMatrix : value , width , length (all optional)")
