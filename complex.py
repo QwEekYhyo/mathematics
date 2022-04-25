@@ -1,5 +1,5 @@
 from fraction import *
-import math
+import math,random
 
 class Complex():
     acc = 3
@@ -114,3 +114,6 @@ def exp(x,acc = 100):
         return exp(x.real,acc)*Complex(mod= 1,arg= x.im)
     else:
         return sum([(x**i)/factorial(i) for i in range(acc)])
+
+def randcomplex(value = 25):
+    return Complex(random.randrange(-value,value),random.randrange(-value,value))    
