@@ -49,10 +49,8 @@ class Matrix:
                         temp.append(self.values[i][j]+other.values[i][j])
                     output.append(temp)
                 return Matrix(output)
-
-            print("Matrices don't have the same dimensions")
-
-        print("You can only add matrices together")
+            raise ValueError("Matrices don't have the same dimensions")
+        raise TypeError("You can only add matrices together")
 
     def __radd__(self,other):
         return self+other
@@ -93,7 +91,7 @@ class Matrix:
                     output.append(temp)
                 return Matrix(output)
 
-            print("Cannot multiply these matrices (nb of columns of the first one != nb of lines of the second one)")
+            raise ValueError("Cannot multiply these matrices (nb of columns of the first one != nb of lines of the second one)")
             
     def __rmul__(self,other):
         if isinstance(other,int) or isinstance(other,float):
@@ -112,7 +110,7 @@ class Matrix:
                 for i in range(other):
                     output *= self
                 return output
-            print("Only square matrices can be raised to a power")
+            raise ValueError("Only square matrices can be raised to a power")
         
     def __eq__(self,other):
         if isinstance(other,Matrix) and self.width == other.width and self.length == other.length:
@@ -154,7 +152,7 @@ class Matrix:
         if isinstance(value,int) and key[0] <= self.width and key[1] <= self.length:
             self.values[key[0]][key[1]] = value
         else:
-            print('Error')
+            raise IndexError('Index out of range')
 
     def __delitem__(self,item):
         if isinstance(item,str):
@@ -191,8 +189,8 @@ class Matrix:
                     output.append(temp)
                 return Matrix(output)
             
-            print("Can only extend matrices with the same nb of lines")
-        print("Can only extend another matrix")
+            raise ValueError("Can only extend matrices with the same nb of lines")
+        raise TypeError("Can only extend another matrix")
 
     def determinant(self):
         if self.width == self.length:
@@ -231,7 +229,7 @@ class Matrix:
         if deter:
             co = self.cofactor()
             return (1/deter)*co.transpose()
-        print("Matrix isn't invertible")
+        raise ValueError("Matrix isn't invertible")
 
     def tofract(self):
         output = []
