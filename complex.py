@@ -1,5 +1,6 @@
 from fraction import *
 import math,random
+import matrix
 
 class Complex():
     acc = 3
@@ -52,6 +53,8 @@ class Complex():
         return self+-cast_to_complex(other)
 
     def __mul__(self,other):
+        if isinstance(other,matrix.Matrix):
+            return other * self
         other = cast_to_complex(other)
         return Complex(self.real*other.real-self.im*other.im,self.real*other.im+self.im*other.real)
 
@@ -66,6 +69,10 @@ class Complex():
         num = self*other.conjugate()
         den = other.modulus**2
         return Complex(num.real/den,num.im/den)
+
+    def __rtruediv__(self,other):
+        other = cast_to_complex(other)
+        return other/self
 
     def polar(self):
         self.form = 1
@@ -96,6 +103,15 @@ class Complex():
             decimal.num_to_int()
             decimal.simplify()
             return [output*(n**decimal.numerator) for n in self.nroot(decimal.denominator)]
+
+    def __eq__(self,other):
+        return self.real == other.real and self.im == other.im
+
+    def __bool__(self):
+        return self.real != 0 or self.im != 0
+
+    def __abs__(self):
+        return Complex(abs(self.real),abs(self.im))
 
 def cast_to_complex(truc):
     if isinstance(truc,Complex):

@@ -70,7 +70,7 @@ class Matrix:
             return -other + self
 
     def __mul__(self,other):
-        if isinstance(other,int) or isinstance(other,float): #ajouter multiplication par complexe
+        if isinstance(other,int) or isinstance(other,float) or isinstance(other,c.Complex):
             output = []
             for i in self.values:
                 temp = []
@@ -150,7 +150,7 @@ class Matrix:
             return Matrix(output)
 
     def __setitem__(self,key,value):
-        if isinstance(value,int) and key[0] <= self.width and key[1] <= self.length:
+        if key[0] <= self.width and key[1] <= self.length:
             self.values[key[0]][key[1]] = value
         else:
             raise IndexError('Index out of range')
