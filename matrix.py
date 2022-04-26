@@ -263,6 +263,7 @@ def newComplexMatrix(value = 30, width = 3, length = 0):
     return Matrix([[c.randcomplex(value) for i in range(length)] for j in range(width)])
     
     
-print("Matrix(values,Identity size) : identity size only utilized if value is empty")
-print("newMatrix : value , width , length (all optional)")
-print("newComplexMatrix : value , width , length (all optional)")
+if __name__ == '__main__':
+    print("Matrix(values,Identity size) : identity size only utilized if value is empty")
+    print("newMatrix : value , width , length (all optional)")
+    print("newComplexMatrix : value , width , length (all optional)")
