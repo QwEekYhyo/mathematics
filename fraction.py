@@ -2,9 +2,14 @@ class Fraction:
     def __init__(self,num,den = 1):
         self.numerator = num
         self.denominator = den
+        if self.denominator == 0:
+            raise ZeroDivisionError("Denominator must be different from 0")
         if self.numerator < 0 and self.denominator < 0:
             self.numerator = abs(self.numerator)
             self.denominator = abs(self.denominator)
+        elif self.denominator < 0 and self.numerator > 0:
+            self.denominator = abs(self.denominator)
+            self.numerator = -self.numerator
 
     def __repr__(self):
         self._to_int()
@@ -55,7 +60,7 @@ class Fraction:
             return (self.changed_den(div/self.denominator)+other.changed_den(div/other.denominator)).simplified()
 
     def __radd__(self,other):
-        return (self+cast_to_fraction(other)).simplified()
+        return (self+cast_to_fraction(other)).simplified
 
     def __neg__(self):
         return Fraction(-self.numerator,self.denominator)
