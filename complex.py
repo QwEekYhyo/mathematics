@@ -113,6 +113,9 @@ class Complex():
     def __abs__(self):
         return Complex(abs(self.real),abs(self.im))
 
+    def matrix(self):
+        return matrix.Matrix([[self.real,-self.im],[self.im,self.real]])
+
 def cast_to_complex(truc):
     if isinstance(truc,Complex):
         return truc
